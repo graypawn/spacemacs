@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     windows-scripts
+     html
      markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -44,9 +46,10 @@ values."
      git
      ;; markdown
      ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-shell 'eshell
+            shell-default-height 30
+            shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
@@ -382,6 +385,22 @@ you should place your code here."
   (set-face-attribute 'linum nil :height 100)
   (eval-after-load "linum-relative"
     '(set-face-attribute 'linum-relative-current-face nil :height 100))
+
+  ;; Jekyll
+  (setq org-publish-project-alist
+        '(("levlaz"
+           ;; Path to org files.
+           :base-directory "~/Documents/deft_post/_org"
+           :base-extension "org"
+
+           ;; Path to Jekyll Posts
+           :publishing-directory "~/Documents/deft_post/_posts/"
+           :recursive t
+           :publishing-function org-html-publish-to-html
+           :headline-levels 4
+           :html-extension "html"
+           :body-only t
+           )))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -394,7 +413,7 @@ you should place your code here."
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    (quote
-    (mmm-mode markdown-toc markdown-mode gh-md nlinum-relative nlinum helm-deft deft smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub with-editor ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup evil-unimpaired async aggressive-indent adaptive-wrap ace-window)))
+    (xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help powershell web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode mmm-mode markdown-toc markdown-mode gh-md nlinum-relative nlinum helm-deft deft smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub with-editor ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed ace-link ace-jump-helm-line helm helm-core popup evil-unimpaired async aggressive-indent adaptive-wrap ace-window)))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
